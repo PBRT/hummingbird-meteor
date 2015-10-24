@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'lib/propTypes'
-import { Grid, Row, Col, Image } from 'react-bootstrap'
+import { Row, Col, Image } from 'react-bootstrap'
 
 const getFacebookPicture = function (id) {
   return `http://graph.facebook.com/${id}/picture/?type=large`
