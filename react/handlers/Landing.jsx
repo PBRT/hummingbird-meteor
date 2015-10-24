@@ -1,5 +1,4 @@
 /* global Locations */
-Meteor.subscribe('locations')
 
 import { Component } from 'react'
 import { Button } from 'react-bootstrap'
@@ -13,13 +12,14 @@ export default class Landing extends Component {
   static displayName = 'Landing'
 
   getMeteorData () {
+    Meteor.subscribe('locations')
+
     return {
       locations: Locations.find().fetch()
     }
   }
 
   render () {
-    console.log(this.data.locations)
     return <div>
       <LoginButtons />
       <Button>Hello world</Button>
