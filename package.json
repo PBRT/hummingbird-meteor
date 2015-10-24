@@ -14,6 +14,7 @@
     "bootswatch": "^3.3.5",
     "es6-promise": "^3.0.2",
     "normalize.css": "^3.0.3",
+    "radium": "^0.14.3",
     "react-bootstrap": "^0.26.4"
   },
   "devDependencies": {

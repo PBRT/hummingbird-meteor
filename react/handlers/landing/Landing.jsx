@@ -3,7 +3,7 @@
 import { Component } from 'react'
 import reactMixin from 'react-mixin'
 import Header from 'components/header'
-import Section from 'components/section'
+import Process from './process'
 
 var s = getStyle()
 
@@ -24,9 +24,7 @@ export default class Landing extends Component {
       <div>
         <Header />
         <div style={s.heroshot}></div>
-        <Section title='How does it works'>
-          Images
-        </Section>
+        <Process />
       </div>
     )
   }
@@ -36,7 +34,7 @@ function getStyle () {
   return {
     heroshot: {
       height: 500,
-      backgroundImage: 'url(' + require('./hero.jpg') + ')',
+      backgroundImage: 'url(' + require('./assets/hero.jpg') + ')',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       WebkitFilter: 'grayscale(1)'

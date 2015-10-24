@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
 import App from 'App'
-import Landing from 'handlers/Landing'
+import Landing from 'handlers/landing/Landing'
 
 ReactRouterSSR.Run(
   <Route path='/' component={ App }>
