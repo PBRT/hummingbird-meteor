@@ -19,56 +19,31 @@ export default class UserTrips extends Component {
     Meteor.subscribe('trips')
 
     return {
-      trips: TripsCollection.find({ 'userId': this.props.params.userId }).fetch()
+      trips: TripsCollection.find({ userId: this.props.params.userId }).fetch()
     }
   }
 
   cancelTrip (tripId) {
-    TripsCollection.remove(tripId)
+    TripsCollection.remove({ _id: tripId })
   }
 
   renderTrips () {
-    let myTrips = [
-      {
-        date: new Date(),
-        from: 'Toulouse',
-        to: 'London',
-        space: 2,
-        id: 0
-      },
-      {
-        date: new Date(),
-        from: 'Toulouse',
-        to: 'London',
-        space: 2,
-        id: 1
-      },
-      {
-        date: new Date(),
-        from: 'Toulouse',
-        to: 'London',
-        space: 2,
-        id: 2
-      }
-    ]
-
-    return myTrips.map((item, index) => {
-      return (
-        <div key={index} style={s.tripContainer}>
-          <Row>
-            <Col sm={6}>
-              <div>Date: {item.date.toString()}</div>
-              <div>From: {item.from} to {item.to}</div>
-              <div>I have {item.space}</div>
-            </Col>
-            <Col sm={3} smOffset={3}>
-              <Button bsStyle='primary' style={{marginRight: 20}}>Edit Trip</Button>
-              <Button bsStyle='danger' onClick={this.cancelTrip.bind(null, item.id)}>Cancel Trip</Button>
-            </Col>
-          </Row>
-        </div>
-      )
-    })
+    return this.data.trips.map(trip =>
+      <div key={trip._id} style={s.tripContainer}>
+        <Row>
+          <Col sm={6}>
+            <div>Date: {trip.date.toString()}</div>
+            <div>From: {trip.fromLocationId} to {trip.toLocationId}</div>
+            <div>I have {trip.availableSize}</div>
+            <div>{trip.description}</div>
+          </Col>
+          <Col sm={3} smOffset={3}>
+            <Button bsStyle='primary' style={{marginRight: 20}}>Edit Trip</Button>
+            <Button bsStyle='danger' onClick={this.cancelTrip.bind(null, trip.id)}>Cancel Trip</Button>
+          </Col>
+        </Row>
+      </div>
+    )
   }
 
   render () {
