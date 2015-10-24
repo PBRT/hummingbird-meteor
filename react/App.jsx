@@ -5,6 +5,11 @@ export default class App extends Component {
     children: PropTypes.node.isRequired
   }
 
+  constructor (props) {
+    super(props)
+    require('./App.css')
+  }
+
   render () {
     return this.props.children
   }
