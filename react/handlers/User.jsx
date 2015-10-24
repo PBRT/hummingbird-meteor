@@ -10,7 +10,8 @@ export default class User extends Component {
   static propTypes = {
     params: PropTypes.shape({
       userId: PropTypes.string.isRequired
-    }).isRequired
+    }).isRequired,
+    children: PropTypes.node.isRequired
   }
 
   getMeteorData () {
@@ -31,6 +32,6 @@ export default class User extends Component {
     return <div>{ this.data.user
       ? this.renderUser()
       : this.renderNotFound()
-    }</div>
+    }{this.props.children}</div>
   }
 }

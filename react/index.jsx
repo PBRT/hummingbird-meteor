@@ -5,6 +5,7 @@ import App from 'App'
 import Landing from 'handlers/landing/Landing'
 import Wrapper from 'handlers/Wrapper'
 import User from 'handlers/User'
+import UserTrips from 'handlers/UserTrips'
 import Trips from 'handlers/Trips'
 import Trip from 'handlers/Trip'
 import NewTrip from 'handlers/NewTrip'
@@ -13,7 +14,12 @@ ReactRouterSSR.Run(
   <Route path='/' component={ App }>
     <IndexRoute component={ Landing } />
     <Route component={ Wrapper }>
-      <Route path='users/:userId' component={ User } />
+      <Route path='users/:userId'>
+        <IndexRoute component={ User } />
+        <Route path='trips'>
+          <IndexRoute component={ UserTrips } />
+        </Route>
+      </Route>
       <Route path='trips'>
         <IndexRoute component={ Trips } />
         <Route path='new' component={ NewTrip } />
