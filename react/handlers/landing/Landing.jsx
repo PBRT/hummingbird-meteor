@@ -2,7 +2,6 @@
 
 import { Component } from 'react'
 import reactMixin from 'react-mixin'
-import Header from 'components/header'
 import Process from './process'
 
 var s = getStyle()
@@ -22,7 +21,6 @@ export default class Landing extends Component {
   render () {
     return (
       <div>
-        <Header />
         <div style={s.heroshot}></div>
         <Process />
       </div>
