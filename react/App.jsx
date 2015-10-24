@@ -1,6 +1,7 @@
 import { Component, PropTypes } from 'react'
 import reactMixin from 'react-mixin'
 import Header from 'components/header'
+import Footer from 'components/footer'
 
 @reactMixin.decorate(ReactMeteorData)
 export default class App extends Component {
@@ -23,6 +24,7 @@ export default class App extends Component {
     return <div style={{ paddingTop: '60px' }}>
       <Header user={ this.data.user } />
       { this.props.children }
+      <Footer />
     </div>
   }
 }

@@ -3,6 +3,8 @@
 import { Component } from 'react'
 import reactMixin from 'react-mixin'
 import Process from './process'
+import Cta from './cta'
+import Question from './question'
 
 var s = getStyle()
 
@@ -23,6 +25,8 @@ export default class Landing extends Component {
       <div>
         <div style={s.heroshot}></div>
         <Process />
+        <Cta />
+        <Question />
       </div>
     )
   }
