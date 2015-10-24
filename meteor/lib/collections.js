@@ -1,5 +1,5 @@
-Locations = new Mongo.Collection('locations') // eslint-disable-line
-Messages = new Mongo.Collection('messages') // eslint-disable-line
-Requests = new Mongo.Collection('requests') // eslint-disable-line
-Reviews = new Mongo.Collection('reviews') // eslint-disable-line
-Trips = new Mongo.Collection('trips') // eslint-disable-line
+LocationsCollection = new Mongo.Collection('locations') // eslint-disable-line
+MessagesCollection = new Mongo.Collection('messages') // eslint-disable-line
+RequestsCollection = new Mongo.Collection('requests') // eslint-disable-line
+ReviewsCollection = new Mongo.Collection('reviews') // eslint-disable-line
+TripsCollection = new Mongo.Collection('trips') // eslint-disable-line

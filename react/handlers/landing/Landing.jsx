@@ -1,4 +1,4 @@
-/* global Locations */
+/* global LocationsCollection */
 
 import { Component } from 'react'
 import reactMixin from 'react-mixin'
@@ -17,7 +17,7 @@ export default class Landing extends Component {
     Meteor.subscribe('locations')
 
     return {
-      locations: Locations.find().fetch()
+      locations: LocationsCollection.find().fetch()
     }
   }
 

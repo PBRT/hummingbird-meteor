@@ -1,7 +1,7 @@
-/* global Locations */
+/* global LocationsCollection */
 
 Meteor.startup(() => {
-  if (Locations.find().count() === 0) {
+  if (LocationsCollection.find().count() === 0) {
     const LOCATIONS = [
       { name: 'London' },
       { name: 'Paris' },
@@ -11,6 +11,6 @@ Meteor.startup(() => {
 
     console.log('No locations. Adding fixtures:', LOCATIONS)
 
-    LOCATIONS.map(location => Locations.insert(location))
+    LOCATIONS.map(location => LocationsCollection.insert(location))
   }
 })

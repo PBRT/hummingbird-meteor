@@ -54,7 +54,8 @@
       "HTTP",
       "ReactRouterSSR",
       "BlazeToReact",
-      "injectTapEventPlugin"
+      "injectTapEventPlugin",
+      "_"
     ],
     "parser": "babel-eslint"
   },
