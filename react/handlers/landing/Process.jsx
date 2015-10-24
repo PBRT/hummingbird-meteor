@@ -1,9 +1,11 @@
 import { Component } from 'react'
 import { Grid, Col } from 'react-bootstrap'
 import { copy } from 'constants/landing.constant'
+import { styles as UI } from 'constants/styles'
+import Radium from 'radium'
 
 var s = getStyle()
-
+@Radium
 export default class Process extends Component {
   static displayName = 'Process'
   constructor (props) {
@@ -17,7 +19,9 @@ export default class Process extends Component {
           <div style={s.imageContainer}>
             <img src={require('./assets/' + item.imgSrc)} style={s.image}/>
           </div>
-          <div style={s.title}>{item.title}</div>
+          <div style={s.title}>
+            <span style={UI.fontLG}>{item.title}</span>
+          </div>
           <div style={s.description}>{item.description}</div>
         </Col>
       )
@@ -27,7 +31,9 @@ export default class Process extends Component {
     return (
       <div style={s.container}>
         <div style={s.subcontainer}>
-          <div style={s.sectionTitle}>How it is working</div>
+          <div style={s.sectionTitle}>
+            <span style={UI.fontLG}>How it is working</span>
+          </div>
           <Grid style={s.container}>
             {this.renderTiles()}
           </Grid>
@@ -40,12 +46,11 @@ export default class Process extends Component {
 function getStyle () {
   return {
     container: {
-      backgroundColor: '#18ad91'
+      backgroundColor: UI.primary
     },
     sectionTitle: {
       marginBottom: 40,
-      color: 'white',
-      fontSize: 28,
+      color: UI.textLight,
       textAlign: 'center'
     },
     subcontainer: {
@@ -53,11 +58,10 @@ function getStyle () {
     },
     tile: {
       marginBottom: 30,
-      color: 'white'
+      color: UI.textLight
     },
     title: {
       marginTop: 20,
-      fontSize: 28,
       textAlign: 'left'
     },
     description: {

@@ -5,9 +5,10 @@ import reactMixin from 'react-mixin'
 import Process from './process'
 import Cta from './cta'
 import Question from './question'
+import Radium from 'radium'
 
 var s = getStyle()
-
+@Radium
 @reactMixin.decorate(ReactMeteorData)
 export default class Landing extends Component {
   static displayName = 'Landing'
@@ -23,7 +24,8 @@ export default class Landing extends Component {
   render () {
     return (
       <div>
-        <div style={s.heroshot}></div>
+        <div style={s.heroshot}>
+        </div>
         <Process />
         <Cta />
         <Question />
