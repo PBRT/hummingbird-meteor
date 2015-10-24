@@ -1,11 +1,11 @@
 /* global Locations */
 
 import { Component } from 'react'
-import { Button } from 'react-bootstrap'
 import reactMixin from 'react-mixin'
-import LocationList from 'components/LocationList'
+import Header from 'components/header'
+import Section from 'components/section'
 
-const LoginButtons = BlazeToReact('loginButtons')
+var s = getStyle()
 
 @reactMixin.decorate(ReactMeteorData)
 export default class Landing extends Component {
@@ -20,12 +20,26 @@ export default class Landing extends Component {
   }
 
   render () {
-    return <div>
-      <LoginButtons />
-      <Button>Hello world</Button>
-      Hello world
-
-      <LocationList locations={ this.data.locations } />
-    </div>
+    return (
+      <div>
+        <Header />
+        <div style={s.heroshot}></div>
+        <Section title='How does it works'>
+          Images
+        </Section>
+      </div>
+    )
   }
 }
+
+function getStyle () {
+  return {
+    heroshot: {
+      height: 500,
+      backgroundImage: 'url(' + require('./hero.jpg') + ')',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      WebkitFilter: 'grayscale(1)'
+    }
+  }
+};
