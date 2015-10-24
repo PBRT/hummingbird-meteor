@@ -8,6 +8,6 @@ import User from 'handlers/User'
 ReactRouterSSR.Run(
   <Route path='/' component={ App }>
     <IndexRoute component={ Landing } />
-    <Route path='user/:userId' component={ User } />
+    <Route path='users/:userId' component={ User } />
   </Route>
 )

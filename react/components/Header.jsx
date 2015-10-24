@@ -34,14 +34,14 @@ export default class Header extends Component {
 
   goToProfile (e) {
     e.preventDefault()
-    this.history.pushState(null, `/user/${this.props.user._id}`)
+    this.history.pushState(null, `/users/${this.props.user._id}`)
   }
 
   renderLogin () {
     const user = this.props.user
     if (user) {
       return <Nav navbar right>
-        <NavItem href={ `/user/${user._id}` } onClick={this.goToProfile}>{user.profile.name}</NavItem>
+        <NavItem href={ `/users/${user._id}` } onClick={this.goToProfile}>{user.profile.name}</NavItem>
         <NavItem onClick={this.handleModal.bind(null, true)}>LOGOUT</NavItem>
       </Nav>
     } else {
