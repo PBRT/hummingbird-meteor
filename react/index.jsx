@@ -1,12 +1,12 @@
-import 'normalize.css'
+import './index.css'
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
 import App from 'App'
-import Test from 'components/Test'
+import Landing from 'handlers/Landing'
 
 ReactRouterSSR.Run(
   <Route path='/' component={ App }>
-    <IndexRoute component={ Test } />
+    <IndexRoute component={ Landing } />
   </Route>
 )

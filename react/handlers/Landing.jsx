@@ -3,8 +3,8 @@ import { Button } from 'react-bootstrap'
 
 const LoginButtons = BlazeToReact('loginButtons')
 
-export default class Test extends Component {
-  static displayName = 'Test'
+export default class Landing extends Component {
+  static displayName = 'Landing'
 
   render () {
     return <div>
