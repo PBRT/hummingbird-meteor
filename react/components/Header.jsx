@@ -27,11 +27,13 @@ export default class Header extends Component {
     this.setState({ isModalVisible: val })
   }
 
-  goToHomepage () {
+  goToHomepage (e) {
+    e.preventDefault()
     this.history.pushState(null, `/`)
   }
 
-  goToProfile () {
+  goToProfile (e) {
+    e.preventDefault()
     this.history.pushState(null, `/user/${this.props.user._id}`)
   }
 
@@ -39,7 +41,7 @@ export default class Header extends Component {
     const user = this.props.user
     if (user) {
       return <Nav navbar right>
-        <NavItem onClick={this.goToProfile}>{user.profile.name}</NavItem>
+        <NavItem href={ `/user/${user._id}` } onClick={this.goToProfile}>{user.profile.name}</NavItem>
         <NavItem onClick={this.handleModal.bind(null, true)}>LOGOUT</NavItem>
       </Nav>
     } else {
@@ -52,7 +54,7 @@ export default class Header extends Component {
   render () {
     return (
       <Navbar fixedTop style={{marginBottom: 0}}>
-        <NavBrand style={{ cursor: 'pointer' }} onClick={this.goToHomepage}>HummingBird</NavBrand>
+        <NavBrand href={ `/` } style={{ cursor: 'pointer' }} onClick={this.goToHomepage}>HummingBird</NavBrand>
         { this.renderLogin() }
         <Modal
           show={this.state.isModalVisible}
