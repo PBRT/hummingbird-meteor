@@ -1,4 +1,5 @@
-import { Component, PropTypes } from 'react'
+import { Component } from 'react'
+import PropTypes from 'lib/propTypes'
 import { Grid, Row, Col, Image } from 'react-bootstrap'
 
 const getFacebookPicture = function (id) {
@@ -9,17 +10,7 @@ export default class Profile extends Component {
   static displayName = 'Profile'
 
   static propTypes = {
-    user: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      profile: PropTypes.shape({
-        createdAt: PropTypes.instanceOf(Date).isRequired,
-        email: PropTypes.string.isRequired,
-        facebookId: PropTypes.string.isRequired,
-        firstName: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
-      })
-    }).isRequired
+    user: PropTypes.hb.user.isRequired
   }
 
   render () {

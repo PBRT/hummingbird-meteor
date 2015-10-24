@@ -1,4 +1,5 @@
-import { Component, PropTypes } from 'react'
+import { Component } from 'react'
+import PropTypes from 'lib/propTypes'
 
 export default class LocationList extends Component {
   static displayName = 'LocationList'
