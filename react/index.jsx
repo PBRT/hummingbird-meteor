@@ -1,5 +1,6 @@
 injectTapEventPlugin() // Required by material-ui.
 
+import 'normalize.css'
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
