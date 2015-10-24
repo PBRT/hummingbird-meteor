@@ -1,10 +1,13 @@
-import { Component, PropTypes } from 'react'
+import { Component } from 'react'
+import PropTypes from 'lib/propTypes'
 import reactMixin from 'react-mixin'
 import Header from 'components/header'
 import Footer from 'components/footer'
 
 @reactMixin.decorate(ReactMeteorData)
 export default class App extends Component {
+  static displayName = 'App'
+
   static propTypes = {
     children: PropTypes.node.isRequired
   }
@@ -21,7 +24,7 @@ export default class App extends Component {
   }
 
   render () {
-    return <div style={{ paddingTop: '60px' }}>
+    return <div style={{ height: '100%', paddingTop: '60px' }}>
       <Header user={ this.data.user } />
       { this.props.children }
       <Footer />
