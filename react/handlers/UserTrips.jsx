@@ -15,6 +15,12 @@ export default class UserTrips extends Component {
     }).isRequired
   }
 
+  constructor (props) {
+    super(props)
+
+    this.cancelTrip = this.cancelTrip.bind(this)
+  }
+
   getMeteorData () {
     Meteor.subscribe('trips')
 
@@ -39,7 +45,7 @@ export default class UserTrips extends Component {
           </Col>
           <Col sm={3} smOffset={3}>
             <Button bsStyle='primary' style={{marginRight: 20}}>Edit Trip</Button>
-            <Button bsStyle='danger' onClick={this.cancelTrip.bind(null, trip.id)}>Cancel Trip</Button>
+            <Button bsStyle='danger' onClick={this.cancelTrip.bind(null, trip._id)}>Cancel Trip</Button>
           </Col>
         </Row>
       </div>
@@ -47,8 +53,6 @@ export default class UserTrips extends Component {
   }
 
   render () {
-    console.log(this.data.trips)
-
     return (
       <div>
         <div className='text-center' style={s.title}>
