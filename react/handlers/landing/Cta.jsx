@@ -1,9 +1,11 @@
 import { Component } from 'react'
 import _ from 'lodash'
 import { Grid, Col, Button } from 'react-bootstrap'
+import { styles as UI } from 'constants/styles'
+import Radium from 'radium'
 
 var s = getStyle()
-
+@Radium
 export default class Cta extends Component {
   static displayName = 'Cta'
   constructor (props) {
@@ -44,7 +46,7 @@ export default class Cta extends Component {
 function getStyle () {
   return {
     container: {
-      backgroundColor: 'white'
+      backgroundColor: UI.widgetBg
     },
     grid: {
       margin: 0,
@@ -56,8 +58,7 @@ function getStyle () {
       paddingBottom: 50
     },
     title: {
-      margin: '40px 0px',
-      fontSize: 28
+      margin: '40px 0px'
     },
     list: {
       padding: '0px 30px'

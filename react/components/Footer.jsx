@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { Grid, Col } from 'react-bootstrap'
+import { styles as UI } from 'constants/styles'
 
 var s = getStyle()
 
@@ -30,8 +31,8 @@ export default class Footer extends Component {
 function getStyle () {
   return {
     container: {
-      backgroundColor: '#2c3e50',
-      color: 'white',
+      backgroundColor: UI.primary,
+      color: UI.textLight,
       textAlign: 'center'
     },
     col: {
