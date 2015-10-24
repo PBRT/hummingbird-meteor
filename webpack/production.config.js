@@ -19,7 +19,8 @@ module.exports = [
     externals: {
       'react': 'React',
       'react-router': 'ReactRouter',
-      'underscore': '_'
+      'underscore': '_',
+      'material-ui': 'MUI'
     },
     plugins: [
       new webpack.DefinePlugin({
@@ -55,7 +56,8 @@ module.exports = [
     },
     externals: {
       'react': 'React',
-      'react-router': 'ReactRouter'
+      'react-router': 'ReactRouter',
+      'material-ui': 'MUI'
     },
     plugins: [
       new webpack.DefinePlugin({
