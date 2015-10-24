@@ -11,8 +11,10 @@
   },
   "license": "MIT",
   "dependencies": {
+    "bootswatch": "^3.3.5",
     "es6-promise": "^3.0.2",
-    "normalize.css": "^3.0.3"
+    "normalize.css": "^3.0.3",
+    "react-bootstrap": "^0.26.4"
   },
   "devDependencies": {
     "babel-core": "^5.8.24",

@@ -34,8 +34,7 @@ module.exports = {
   externals: {
     'react': 'React',
     'react-router': 'ReactRouter',
-    'underscore': '_',
-    'material-ui': 'MUI'
+    'underscore': '_'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
