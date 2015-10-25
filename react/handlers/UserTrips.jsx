@@ -1,3 +1,4 @@
+/* global LocationsCollection */
 /* global TripsCollection */
 import { Component, PropTypes } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
@@ -19,13 +20,16 @@ export default class UserTrips extends Component {
     super(props)
 
     this.cancelTrip = this.cancelTrip.bind(this)
+    this.renderTrip = this.renderTrip.bind(this)
   }
 
   getMeteorData () {
+    Meteor.subscribe('locations')
     Meteor.subscribe('trips')
 
     return {
-      trips: TripsCollection.find({ userId: this.props.params.userId }).fetch()
+      trips: TripsCollection.find({ userId: this.props.params.userId }).fetch(),
+      locations: LocationsCollection.find().fetch()
     }
   }
 
@@ -33,23 +37,27 @@ export default class UserTrips extends Component {
     TripsCollection.remove({ _id: tripId })
   }
 
+  renderTrip (trip) {
+    const [fromLocation] = this.data.locations.filter(location => location._id === trip.fromLocationId)
+    const [toLocation] = this.data.locations.filter(location => location._id === trip.toLocationId)
+    return <div key={trip._id} style={s.tripContainer}>
+      <Row>
+        <Col sm={6}>
+          <div>Date: {trip.date.toString()}</div>
+          <div>From: {fromLocation.name} to {toLocation.name}</div>
+          <div>I have {trip.availableSize}</div>
+          <div>{trip.description}</div>
+        </Col>
+        <Col sm={3} smOffset={3}>
+          <Button bsStyle='primary' style={{marginRight: 20}}>Edit Trip</Button>
+          <Button bsStyle='danger' onClick={this.cancelTrip.bind(null, trip._id)}>Cancel Trip</Button>
+        </Col>
+      </Row>
+    </div>
+  }
+
   renderTrips () {
-    return this.data.trips.map(trip =>
-      <div key={trip._id} style={s.tripContainer}>
-        <Row>
-          <Col sm={6}>
-            <div>Date: {trip.date.toString()}</div>
-            <div>From: {trip.fromLocationId} to {trip.toLocationId}</div>
-            <div>I have {trip.availableSize}</div>
-            <div>{trip.description}</div>
-          </Col>
-          <Col sm={3} smOffset={3}>
-            <Button bsStyle='primary' style={{marginRight: 20}}>Edit Trip</Button>
-            <Button bsStyle='danger' onClick={this.cancelTrip.bind(null, trip._id)}>Cancel Trip</Button>
-          </Col>
-        </Row>
-      </div>
-    )
+    return this.data.trips.map(this.renderTrip)
   }
 
   render () {
