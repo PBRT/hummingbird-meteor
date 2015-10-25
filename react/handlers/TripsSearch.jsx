@@ -49,7 +49,7 @@ export default class TripsSearch extends Component {
             <h5>{item.description}</h5>
           </Col>
           <Col xs={3}>
-            <Button onClick={this.createRequest.bind(null, item._id)}>Get in touch</Button>
+            <Button onClick={this.createRequest.bind(null, item._id, user._id)}>Get in touch</Button>
           </Col>
         </Row>
       </div>
@@ -66,10 +66,11 @@ export default class TripsSearch extends Component {
     }
   }
 
-  createRequest (tripId) {
+  createRequest (tripId, carrierId) {
     RequestsCollection.insert({
       userId: Meteor.user()._id,
       tripId: tripId,
+      carrierId: carrierId,
       status: 0
     })
     this.history.pushState(null, `/users/${Meteor.user()._id}/requests`)

@@ -19,23 +19,23 @@ export default class UserRequests extends Component {
     this.renderRequest = this.renderRequest.bind(this)
   }
   renderRequest () {
-    console.log('the', this.data.requests)
-
-    RequestsCollection.find().map((item) => {
-      console.log('item', item)
-    })
+    return <ul>
+      { this.data.requests.map(request => <li key={ request._id }>{ request._id }</li>) }
+    </ul>
   }
   getMeteorData () {
-    Meteor.subscribe('requests')
+    const { userId } = this.props.params
+    Meteor.subscribe('requestsByMe')
+
     return {
-      user: Meteor.users.findOne(this.props.params.userId),
-      requests: RequestsCollection.find().fetch()
+      user: Meteor.users.findOne(userId),
+      requests: RequestsCollection.find({ userId }).fetch()
     }
   }
   render () {
     return <Row>
       <p>User Request</p>
       <div>{this.renderRequest()}</div>
-      </Row>
+    </Row>
   }
 }
