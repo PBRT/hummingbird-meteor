@@ -31,5 +31,6 @@ export const styles = {
   text: '#3F4E5A',
   textLight: '#AAB5BF',
 
-  widgetBg: '#F2F2F2'
+  widgetBg: '#F2F2F2',
+  whiteBg: '#FFFFFF'
 }

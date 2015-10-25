@@ -4,15 +4,11 @@
 import { Component, PropTypes } from 'react'
 import reactMixin from 'react-mixin'
 import Search from 'components/search'
-import { Row, Col, Image, Button } from 'react-bootstrap'
 import { styles as UI } from 'constants/styles'
 import { History } from 'react-router'
+import Trip from 'components/trip'
 
 var s = getStyles()
-
-const getFacebookPicture = function (id) {
-  return `http://graph.facebook.com/${id}/picture/?type=large`
-}
 
 @reactMixin.decorate(History)
 @reactMixin.decorate(ReactMeteorData)
@@ -26,33 +22,13 @@ export default class TripsSearch extends Component {
   constructor (props) {
     super(props)
     this.renderResults = this.renderResults.bind(this)
-    this.createRequest = this.createRequest.bind(this)
   }
 
   renderResults () {
     return this.data.trips.map((item) => {
       const [fromLocation] = this.data.locations.filter(location => location._id === item.fromLocationId)
       const [toLocation] = this.data.locations.filter(location => location._id === item.toLocationId)
-      const user = Meteor.users.findOne(item.userId)
-
-      return <div style={s.tripContainer} key={item._id}>
-        <Row>
-          <Col xs={3}>
-            <div><Image responsive src={ getFacebookPicture(user.profile.facebookId) } alt='Profile picture' /></div>
-            <div>{user.profile.name}</div>
-          </Col>
-          <Col xs={6}>
-            <h5>From: {fromLocation.name}</h5>
-            <h5>To: {toLocation.name}</h5>
-            <h5>The {item.date}</h5>
-            <h5>Available space: {item.availableSize.toUpperCase()}</h5>
-            <h5>{item.description}</h5>
-          </Col>
-          <Col xs={3}>
-            <Button onClick={this.createRequest.bind(null, item._id, user._id)}>Get in touch</Button>
-          </Col>
-        </Row>
-      </div>
+      return <Trip trip={item} key={item._id} fromLocation={fromLocation} toLocation={toLocation}/>
     })
   }
   getMeteorData () {
@@ -62,16 +38,6 @@ export default class TripsSearch extends Component {
       requests: RequestsCollection.find().fetch(),
       users: Meteor.users.find().fetch()
     }
-  }
-
-  createRequest (tripId, carrierId) {
-    RequestsCollection.insert({
-      userId: Meteor.user()._id,
-      tripId: tripId,
-      carrierId: carrierId,
-      status: 0
-    })
-    this.history.pushState(null, `/users/${Meteor.user()._id}/requests`)
   }
 
   render () {

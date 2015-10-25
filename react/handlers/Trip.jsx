@@ -3,6 +3,7 @@
 import { Component } from 'react'
 import PropTypes from 'lib/propTypes'
 import reactMixin from 'react-mixin'
+import Request from 'components/request'
 
 @reactMixin.decorate(ReactMeteorData)
 export default class Trip extends Component {
@@ -34,11 +35,16 @@ export default class Trip extends Component {
   renderRequests () {
     if (this.data.requests.length) {
       return <div>
-        <h4>Requests</h4>
-        <ul>
-          { this.data.requests.map(request => <li key={ request._id }>{ request._id }</li>) }
-        </ul>
-      </div>
+        <h4>Requests Pending</h4>
+        { this.data.requests.filter(request => request.status === 0).map(request =>
+            <Request key={request._id} request={request} />)}
+        <h4>Requests Accepted</h4>
+        { this.data.requests.filter(request => request.status === 1).map(request =>
+            <Request key={request._id} request={request} />)}
+        <h4>Requests Declined</h4>
+        { this.data.requests.filter(request => request.status === 2).map(request =>
+            <Request key={request._id} request={request} />)}
+        </div>
     } else {
       return <div>
         <h4>No requests.</h4>
@@ -48,6 +54,7 @@ export default class Trip extends Component {
 
   render () {
     return <div>
+      <h1>Trip View</h1>
       { this.renderTripInformation() }
       { this.renderRequests() }
     </div>
