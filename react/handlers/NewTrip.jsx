@@ -26,8 +26,6 @@ export default class NewTrip extends Component {
   }
 
   getMeteorData () {
-    Meteor.subscribe('locations')
-
     return {
       locations: LocationsCollection.find().fetch()
     }

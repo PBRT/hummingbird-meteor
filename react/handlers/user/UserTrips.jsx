@@ -25,9 +25,6 @@ export default class UserTrips extends Component {
   }
 
   getMeteorData () {
-    Meteor.subscribe('locations')
-    Meteor.subscribe('trips')
-
     return {
       trips: TripsCollection.find({ userId: this.props.params.userId }).fetch(),
       locations: LocationsCollection.find().fetch()

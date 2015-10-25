@@ -30,7 +30,7 @@ export default class TripsSearch extends Component {
   }
 
   renderResults () {
-    return TripsCollection.find(this.props.location.query).map((item) => {
+    return this.data.trips.map((item) => {
       const [fromLocation] = this.data.locations.filter(location => location._id === item.fromLocationId)
       const [toLocation] = this.data.locations.filter(location => location._id === item.toLocationId)
       const user = Meteor.users.findOne(item.userId)
@@ -56,13 +56,11 @@ export default class TripsSearch extends Component {
     })
   }
   getMeteorData () {
-    Meteor.subscribe('trips')
-    Meteor.subscribe('location')
-    Meteor.subscribe('requests')
     return {
-      trips: TripsCollection.find().fetch(),
+      trips: TripsCollection.find(this.props.location.query).fetch(),
       locations: LocationsCollection.find().fetch(),
-      requests: RequestsCollection.find().fetch()
+      requests: RequestsCollection.find().fetch(),
+      users: Meteor.users.find().fetch()
     }
   }
 
@@ -79,19 +77,24 @@ export default class TripsSearch extends Component {
   render () {
     let params = this.props.location.query
     const [fromLocation] = this.data.locations.filter(location => location._id === params.fromLocationId)
+    console.log(fromLocation, toLocation)
     const [toLocation] = this.data.locations.filter(location => location._id === params.toLocationId)
 
-    return <div>
-      <h2> Results for trips from
-        <b> {fromLocation.name}</b> to
-        <b> {toLocation.name} </b>
-        {params.date ? <span>the {params.date.toString()} </span> : ''}
-        {params.availableSize
-          ? <span>for a <b> {params.availableSize.toUpperCase()} parcel</b></span> : ''}
-        </h2>
-      <Search />
-      <div style={s.results}>{this.renderResults()}</div>
-    </div>
+    if (!fromLocation || !toLocation) {
+      return <div>No results</div>
+    } else {
+      return <div>
+        <h2> Results for trips from
+          <b> {fromLocation.name}</b> to
+          <b> {toLocation.name} </b>
+          {params.date ? <span>the {params.date.toString()} </span> : ''}
+          {params.availableSize
+            ? <span>for a <b> {params.availableSize.toUpperCase()} parcel</b></span> : ''}
+          </h2>
+        <Search />
+        <div style={s.results}>{this.renderResults()}</div>
+      </div>
+    }
   }
 }
 

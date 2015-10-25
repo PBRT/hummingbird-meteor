@@ -25,8 +25,6 @@ export default class UserRequests extends Component {
   }
   getMeteorData () {
     const { userId } = this.props.params
-    Meteor.subscribe('requestsByMe')
-
     return {
       user: Meteor.users.findOne(userId),
       requests: RequestsCollection.find({ userId }).fetch()

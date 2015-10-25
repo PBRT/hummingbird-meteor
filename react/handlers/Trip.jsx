@@ -14,9 +14,6 @@ export default class Trip extends Component {
 
   getMeteorData () {
     const { tripId } = this.props.params
-    Meteor.subscribe('trips')
-    Meteor.subscribe('requestsForMe')
-
     return {
       trip: TripsCollection.findOne({ _id: tripId }),
       requests: RequestsCollection.find({ tripId }).fetch()

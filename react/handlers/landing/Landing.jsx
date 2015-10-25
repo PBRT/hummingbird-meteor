@@ -15,8 +15,6 @@ export default class Landing extends Component {
   static displayName = 'Landing'
 
   getMeteorData () {
-    Meteor.subscribe('locations')
-
     return {
       locations: LocationsCollection.find().fetch()
     }

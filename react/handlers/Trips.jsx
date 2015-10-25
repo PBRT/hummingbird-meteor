@@ -7,8 +7,6 @@ export default class Trips extends Component {
   static displayName = 'Trips'
 
   getMeteorData () {
-    Meteor.subscribe('trips')
-
     return {
       trips: TripsCollection.find().fetch()
     }

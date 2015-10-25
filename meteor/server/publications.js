@@ -13,3 +13,5 @@ Meteor.publish('requestsForMe', function () {
 })
 
 Meteor.publish('trips', () => { return TripsCollection.find() })
+
+Meteor.publish('users', () => { return Meteor.users.find() })

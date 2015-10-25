@@ -18,6 +18,12 @@ export default class App extends Component {
   }
 
   getMeteorData () {
+    Meteor.subscribe('trips')
+    Meteor.subscribe('requestsForMe')
+    Meteor.subscribe('requestsByMe')
+    Meteor.subscribe('locations')
+    Meteor.subscribe('requests')
+    Meteor.subscribe('users')
     return {
       user: Meteor.user()
     }
