@@ -4,21 +4,26 @@ import { Route, IndexRoute } from 'react-router'
 import App from 'App'
 import Landing from 'handlers/landing/Landing'
 import Wrapper from 'handlers/Wrapper'
-import User from 'handlers/User'
-import UserTrips from 'handlers/UserTrips'
+
+// Trips
 import Trips from 'handlers/Trips'
 import Trip from 'handlers/Trip'
 import NewTrip from 'handlers/NewTrip'
+
+// User view
+import User from 'handlers/user/User'
+import UserTrips from 'handlers/user/UserTrips'
+import UserDetails from 'handlers/user/UserDetails'
+import UserRequests from 'handlers/user/UserRequests'
 
 ReactRouterSSR.Run(
   <Route path='/' component={ App }>
     <IndexRoute component={ Landing } />
     <Route component={ Wrapper }>
-      <Route path='users/:userId'>
-        <IndexRoute component={ User } />
-        <Route path='trips'>
-          <IndexRoute component={ UserTrips } />
-        </Route>
+      <Route path='users/:userId' component={ User } >
+        <IndexRoute component={ UserDetails } />
+        <Route path='trips' component={ UserTrips } />
+        <Route path='requests' component={ UserRequests } />
       </Route>
       <Route path='trips'>
         <IndexRoute component={ Trips } />

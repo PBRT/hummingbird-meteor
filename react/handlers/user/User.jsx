@@ -1,7 +1,8 @@
 import { Component, PropTypes } from 'react'
 import reactMixin from 'react-mixin'
 
-import Profile from 'components/Profile'
+import { Row, Col } from 'react-bootstrap'
+import ProfileTile from 'components/ProfileTile'
 
 @reactMixin.decorate(ReactMeteorData)
 export default class User extends Component {
@@ -25,13 +26,21 @@ export default class User extends Component {
   }
 
   renderUser () {
-    return <Profile user={ this.data.user } />
+    return <Row>
+      <Col sm={4}>
+        <ProfileTile user={ this.data.user }/>
+      </Col>
+      <Col sm={8}>
+        { this.props.children }
+      </Col>
+    </Row>
   }
 
   render () {
-    return <div>{ this.data.user
-      ? this.renderUser()
-      : this.renderNotFound()
-    }{this.props.children}</div>
+    return <div>
+    { this.data.user
+    ? this.renderUser()
+    : this.renderNotFound()}
+    </div>
   }
 }
