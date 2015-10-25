@@ -1,4 +1,5 @@
-import { Component, PropTypes } from 'react'
+import { Component } from 'react'
+import PropTypes from 'lib/propTypes'
 import reactMixin from 'react-mixin'
 
 import { Row, Col } from 'react-bootstrap'

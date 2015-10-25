@@ -3,6 +3,7 @@
 import { Component, PropTypes } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import reactMixin from 'react-mixin'
+import { Link } from 'react-router'
 import { styles as UI } from 'constants/styles'
 
 var s = getStyle()
@@ -37,6 +38,10 @@ export default class UserTrips extends Component {
     TripsCollection.remove({ _id: tripId })
   }
 
+  viewTrip (tripId) {
+
+  }
+
   renderTrip (trip) {
     const [fromLocation] = this.data.locations.filter(location => location._id === trip.fromLocationId)
     const [toLocation] = this.data.locations.filter(location => location._id === trip.toLocationId)
@@ -49,7 +54,9 @@ export default class UserTrips extends Component {
           <div>{trip.description}</div>
         </Col>
         <Col sm={3} smOffset={3}>
-          <Button bsStyle='primary' style={{marginRight: 20}}>Edit Trip</Button>
+          <Button bsStyle='primary' style={{marginRight: 20}}>
+            <Link to={`/trips/${trip._id}`}>View Trip</Link>
+          </Button>
           <Button bsStyle='danger' onClick={this.cancelTrip.bind(null, trip._id)}>Cancel Trip</Button>
         </Col>
       </Row>
