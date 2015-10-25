@@ -21,6 +21,7 @@ export default class Header extends Component {
     this.handleModal = this.handleModal.bind(this)
     this.goToHomepage = this.goToHomepage.bind(this)
     this.goToProfile = this.goToProfile.bind(this)
+    this.goToCreateTrip = this.goToCreateTrip.bind(this)
   }
 
   handleModal (val) {
@@ -37,10 +38,16 @@ export default class Header extends Component {
     this.history.pushState(null, `/users/${this.props.user._id}`)
   }
 
+  goToCreateTrip (e) {
+    e.preventDefault()
+    this.history.pushState(null, `/trips/new`)
+  }
+
   renderLogin () {
     const user = this.props.user
     if (user) {
       return <Nav navbar right>
+        <NavItem href={ `/trips/new` } onClick={this.goToCreateTrip}>New Trip</NavItem>
         <NavItem href={ `/users/${user._id}` } onClick={this.goToProfile}>{user.profile.name}</NavItem>
         <NavItem onClick={this.handleModal.bind(null, true)}>LOGOUT</NavItem>
       </Nav>

@@ -9,6 +9,7 @@ import Wrapper from 'handlers/Wrapper'
 import Trips from 'handlers/Trips'
 import Trip from 'handlers/Trip'
 import NewTrip from 'handlers/NewTrip'
+import TripsSearch from 'handlers/TripsSearch'
 
 // User view
 import User from 'handlers/user/User'
@@ -28,6 +29,7 @@ ReactRouterSSR.Run(
       <Route path='trips'>
         <IndexRoute component={ Trips } />
         <Route path='new' component={ NewTrip } />
+        <Route path='search' component={ TripsSearch } />
         <Route path=':tripId' component={ Trip } />
       </Route>
     </Route>

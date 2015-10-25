@@ -10,3 +10,7 @@ html, body, #react-app {
   height: 100%;
   width: 100%;
 }
+
+.form-group {
+  margin-bottom: 0;
+}

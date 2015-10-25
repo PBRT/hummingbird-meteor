@@ -6,6 +6,7 @@ import Process from './process'
 import Cta from './cta'
 import Question from './question'
 import Radium from 'radium'
+import Search from 'components/search'
 
 var s = getStyle()
 @Radium
@@ -25,6 +26,7 @@ export default class Landing extends Component {
     return (
       <div>
         <div style={s.heroshot}>
+          <Search />
         </div>
         <Process />
         <Cta />
