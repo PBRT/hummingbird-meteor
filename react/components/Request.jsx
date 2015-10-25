@@ -27,7 +27,7 @@ export default class Request extends Component {
     }
   }
   updateRequest (val) {
-    RequestsCollection.update({_id: this.props.request._id}, {status: val})
+    RequestsCollection.update({_id: this.props.request._id}, {$set: {status: val}})
   }
   render () {
     return (

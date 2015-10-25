@@ -11,8 +11,8 @@ TripsCollection.allow({
   },
   update: (userId, doc, fields) => {
     const isOwner = doc.userId === userId
-    const dontChangeUserId = _.contains(fields, 'userId')
-    return isOwner && dontChangeUserId
+    const changeUserId = _.contains(fields, 'userId')
+    return isOwner && !changeUserId
   },
   remove: (userId, doc) => {
     const isOwner = doc.userId === userId
@@ -29,8 +29,8 @@ RequestsCollection.allow({
   },
   update: (userId, doc, fields) => {
     const isOwner = doc.userId === userId
-    const dontChangeUserId = _.contains(fields, 'userId')
-    return isOwner && dontChangeUserId
+    const changeUserId = _.contains(fields, 'userId')
+    return isOwner && !changeUserId
   },
   remove: (userId, doc) => {
     const isOwner = doc.userId === userId
